@@ -1,8 +1,10 @@
+let iterationDisplay = document.getElementById("iteration-display");
+let resetButton = document.getElementById("reset-button");
+let constantTarget = document.getElementById("constant-target");
+let constantSubmit = document.getElementById("constant-submit");
 let linearTarget = document.getElementById("linear-target");
 let linearArrSize = document.getElementById("linear-array-size");
 let linearSubmit = document.getElementById("linear-submit");
-let iterationDisplay = document.getElementById("iteration-display");
-let resetButton = document.getElementById("reset-button");
 
 let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 let target = 9;
@@ -13,13 +15,28 @@ let end = arr.length - 1;
 
 resetButton.onclick = () => {
   iterationDisplay.innerHTML = "";
+  constantTarget.value = "";
   linearArrSize.value = "";
   linearTarget.value = "";
 };
 
+constantSubmit.onclick = () => {
+  if (!iterationDisplay.innerHTML == "") {
+    iterationDisplay.innerHTML = "";
+  }
+  if (constantTarget.value === "") {
+    alert("Enter Input Values");
+    return;
+  }
+  iterationDisplay.innerHTML = constant(parseInt(constantTarget.value));
+};
+
 linearSubmit.onclick = () => {
+  if (!iterationDisplay.innerHTML == "") {
+    iterationDisplay.innerHTML = "";
+  }
   if (linearArrSize.value === "" || linearTarget.value === "") {
-    alert("No Values");
+    alert("Enter Input Values");
     return;
   }
   linear(
@@ -48,14 +65,23 @@ function constant(n) {
 //Linear
 function linear(arr, target) {
   for (i = 0; i < arr.length; i++) {
-    iterationDisplay.innerHTML = iterationDisplay.innerHTML.concat(
-      ` ${arr[i]}`
-    );
+    if (iterationDisplay.innerHTML === "") {
+      iterationDisplay.innerHTML = arr[i];
+    } else {
+      iterationDisplay.innerHTML = iterationDisplay.innerHTML.concat(
+        ` ${arr[i]}`
+      );
+    }
     if (arr[i] === target) {
-      return arr[i];
+      iterationDisplay.innerHTML = iterationDisplay.innerHTML.concat(
+        `\n\nTarget Found "${arr[i]}"`
+      );
+      return;
     }
   }
-  return "Target not found";
+  iterationDisplay.innerHTML =
+    iterationDisplay.innerHTML.concat(`\n\nTarget Not Found`);
+  return;
 }
 
 //Quadratic
