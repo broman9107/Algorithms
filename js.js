@@ -5,6 +5,8 @@ let constantSubmit = document.getElementById("constant-submit");
 let linearTarget = document.getElementById("linear-target");
 let linearArrSize = document.getElementById("linear-array-size");
 let linearSubmit = document.getElementById("linear-submit");
+let quadraticTarget = document.getElementById("quadratic-target");
+let quadraticSubmit = document.getElementById("quadratic-submit");
 
 let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 let target = 9;
@@ -14,26 +16,23 @@ let end = arr.length - 1;
 //------------------- On Click Functions -------------------\\
 
 resetButton.onclick = () => {
-  iterationDisplay.innerHTML = "";
-  constantTarget.value = "";
-  linearArrSize.value = "";
-  linearTarget.value = "";
+  reset();
 };
 
 constantSubmit.onclick = () => {
   if (!iterationDisplay.innerHTML == "") {
-    iterationDisplay.innerHTML = "";
+    clearDisplay();
   }
   if (constantTarget.value === "") {
     alert("Enter Input Values");
     return;
   }
-  iterationDisplay.innerHTML = constant(parseInt(constantTarget.value));
+  constant(parseInt(constantTarget.value));
 };
 
 linearSubmit.onclick = () => {
   if (!iterationDisplay.innerHTML == "") {
-    iterationDisplay.innerHTML = "";
+    clearDisplay();
   }
   if (linearArrSize.value === "" || linearTarget.value === "") {
     alert("Enter Input Values");
@@ -43,6 +42,17 @@ linearSubmit.onclick = () => {
     fillArray(parseInt(linearArrSize.value)),
     parseInt(linearTarget.value)
   );
+};
+
+quadraticSubmit.onclick = () => {
+  if (!iterationDisplay.innerHTML == "") {
+    clearDisplay();
+  }
+  if (quadraticTarget.value === "") {
+    alert("Enter Input Values");
+    return;
+  }
+  quadratic(parseInt(quadraticTarget.value));
 };
 
 //------------------- Fill Array -------------------\\
@@ -55,11 +65,23 @@ function fillArray(input) {
   return arr2;
 }
 
+function reset(){
+  iterationDisplay.innerHTML = "";
+  constantTarget.value = "";
+  linearArrSize.value = "";
+  linearTarget.value = "";
+  quadraticTarget.value = "";
+}
+
+function clearDisplay(){
+  iterationDisplay.innerHTML = "";
+}
+
 //------------------- Big O Types -------------------\\
 
 //Constant
 function constant(n) {
-  return n;
+  iterationDisplay.innerHTML = `${n}\n\nConstant Algorithm iterated "1" time`
 }
 
 //Linear
@@ -74,8 +96,8 @@ function linear(arr, target) {
     }
     if (arr[i] === target) {
       iterationDisplay.innerHTML = iterationDisplay.innerHTML.concat(
-        `\n\nTarget Found "${arr[i]}"`
-      );
+        `\n\nTarget Found "${arr[i]}"\n\nLinear Algorithm iterated "${i}" times`);
+
       return;
     }
   }
@@ -86,11 +108,22 @@ function linear(arr, target) {
 
 //Quadratic
 function quadratic(n) {
+  let q = 0;
   for (i = 0; i < n; i++) {
     for (j = 0; j < n; j++) {
-      console.log("Hey");
+      q++
+      if (iterationDisplay.innerHTML === "") {
+        iterationDisplay.innerHTML = q;
+      } else {
+        iterationDisplay.innerHTML = iterationDisplay.innerHTML.concat(
+          ` ${q}`
+        );
+      }
     }
   }
+  iterationDisplay.innerHTML = iterationDisplay.innerHTML.concat(
+    `\n\nQuadratic Algorithm iterated "${q}" times`
+    );
 }
 
 //LogN
