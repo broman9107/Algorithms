@@ -7,6 +7,8 @@ let linearArrSize = document.getElementById("linear-array-size");
 let linearSubmit = document.getElementById("linear-submit");
 let quadraticTarget = document.getElementById("quadratic-target");
 let quadraticSubmit = document.getElementById("quadratic-submit");
+let lognTarget = document.getElementById("logn-target");
+let lognSubmit = document.getElementById("logn-submit");
 
 let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 let target = 9;
@@ -55,6 +57,17 @@ quadraticSubmit.onclick = () => {
   quadratic(parseInt(quadraticTarget.value));
 };
 
+lognSubmit.onclick = () => {
+  if (!iterationDisplay.innerHTML == "") {
+    clearDisplay();
+  }
+  if (lognTarget.value === "") {
+    alert("Enter Input Values");
+    return;
+  }
+  logn(parseInt(lognTarget.value));
+};
+
 //------------------- Fill Array -------------------\\
 
 function fillArray(input) {
@@ -65,15 +78,16 @@ function fillArray(input) {
   return arr2;
 }
 
-function reset(){
+function reset() {
   iterationDisplay.innerHTML = "";
   constantTarget.value = "";
   linearArrSize.value = "";
   linearTarget.value = "";
   quadraticTarget.value = "";
+  lognTarget.value = "";
 }
 
-function clearDisplay(){
+function clearDisplay() {
   iterationDisplay.innerHTML = "";
 }
 
@@ -81,12 +95,14 @@ function clearDisplay(){
 
 //Constant
 function constant(n) {
-  iterationDisplay.innerHTML = `${n}\n\nConstant Algorithm iterated "1" time`
+  iterationDisplay.innerHTML = `Target Value is "${n}"\n\nConstant Algorithm iterated "1" time`;
 }
 
 //Linear
 function linear(arr, target) {
+  let q = 0;
   for (i = 0; i < arr.length; i++) {
+    q++;
     if (iterationDisplay.innerHTML === "") {
       iterationDisplay.innerHTML = arr[i];
     } else {
@@ -96,7 +112,8 @@ function linear(arr, target) {
     }
     if (arr[i] === target) {
       iterationDisplay.innerHTML = iterationDisplay.innerHTML.concat(
-        `\n\nTarget Found "${arr[i]}"\n\nLinear Algorithm iterated "${i}" times`);
+        `\n\nFound Target Value "${arr[i]}" at Array Index "${i}"\n\nLinear Algorithm iterated "${q}" times`
+      );
 
       return;
     }
@@ -111,27 +128,34 @@ function quadratic(n) {
   let q = 0;
   for (i = 0; i < n; i++) {
     for (j = 0; j < n; j++) {
-      q++
+      q++;
       if (iterationDisplay.innerHTML === "") {
         iterationDisplay.innerHTML = q;
       } else {
-        iterationDisplay.innerHTML = iterationDisplay.innerHTML.concat(
-          ` ${q}`
-        );
+        iterationDisplay.innerHTML = iterationDisplay.innerHTML.concat(` ${q}`);
       }
     }
   }
   iterationDisplay.innerHTML = iterationDisplay.innerHTML.concat(
     `\n\nQuadratic Algorithm iterated "${q}" times`
-    );
+  );
 }
 
 //LogN
 function logn(n) {
+  let q = 0;
   while (n > 1) {
+    q++
     n = Math.floor(n / 2);
-    console.log(n);
+    if (iterationDisplay.innerHTML === "") {
+      iterationDisplay.innerHTML = n;
+    } else {
+      iterationDisplay.innerHTML = iterationDisplay.innerHTML.concat(` ${n}`);
+    }
   }
+  iterationDisplay.innerHTML = iterationDisplay.innerHTML.concat(
+    `\n\nLogN Algorithm iterated "${q}" times`
+  );
 }
 
 //------------------- Algorithms -------------------\\
