@@ -8,20 +8,22 @@ linearSubmit.onclick = () => {
     alert("No Values");
     return;
   }
-  fillArray(linearArrSize.value);
-  consoleLogging.innerHTML = linear(arr2, parseInt(linearTarget.value));
+  consoleLogging.innerHTML = linear(fillArray(parseInt(linearArrSize.value)), parseInt(linearTarget.value));
+  linearArrSize.value = "";
+  linearTarget.value = "";
 };
 
 let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-let arr2 = [];
 let target = 9;
 let start = 0;
 let end = arr.length - 1;
 
 function fillArray(input) {
+    let arr2 = [];
   for (i = 1; i <= input; i++) {
-    arr2.push(i);
+    arr2.push(i);  
   }
+  return arr2;
 }
 
 function constant(n) {
