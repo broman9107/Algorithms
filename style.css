@@ -9,24 +9,51 @@ body {
     background-attachment: fixed;
 }
 
+#reset-button{
+    margin-left: 2rem;
+    border: 1px solid black;
+    width: 7rem;
+    font-size: 1.5rem;
+}
+
+#reset-button:hover{
+    background-color: rgb(31, 31, 46);
+    border: 1px solid white;
+    color: white;
+    cursor: pointer;
+}
+
+#main-container{
+    display: grid;
+    width: 95vw;
+    height: 80vh;
+    grid-template-columns: 1fr 1fr;
+}
+
+#left-grid{
+    margin-left: 2rem;
+}
+
+#right-grid{
+    place-self: center;
+}
+
 input{
     padding: .5rem;
     margin: 1rem 0;
 }
 
+#iteration-display{
+    width: 40vw;
+    height: 70vh;
+    font-size: 1.5rem;
+    padding: .5rem;
+    resize: none;
+    grid-column: span 2;
+}
+
 .submit:hover{
     background-color: rgb(31, 31, 46);
-    color: white; 
-}
-
-#linear-container{
-    margin: 2vw;
-}
-
-#linear-submit{
+    color: white;
     cursor: pointer;
-}
-
-#console-logging{
-    margin: .5rem 0;
 }

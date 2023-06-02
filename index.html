@@ -1,28 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&display=swap" rel="stylesheet">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
-    <div id="linear-container">
-        <h1>Linear O(n)</h1>
-        <input type="text" id="linear-target" placeholder="Target Value">
-        <input type="text" id="linear-array-size" placeholder="Array Size">
-        <input type="submit" id="linear-submit" class="submit">
-        <h2 id="console-logging"></h2>
-    </div> 
-    
-
+  <body>
+    <div id="reset-div">
+      <input type="reset" id="reset-button" />
+    </div>
+    <div id="main-container">
+      <div id="left-grid">
+        <div id="linear-container">
+          <h1>Linear Search O(n)</h1>
+          <input type="text" id="linear-target" placeholder="Target Value" />
+          <input type="text" id="linear-array-size" placeholder="Array Size" />
+          <input type="submit" id="linear-submit" class="submit" />
+        </div>
+      </div>
+      <div id="right-grid">
+        <textarea
+          name="iteration-display"
+          id="iteration-display"
+          readonly
+        ></textarea>
+      </div>
+    </div>
     <script src="js.js"></script>
-</body>
-
+  </body>
 </html>
